@@ -1,18 +1,20 @@
-const fs = require('fs');
+import fs from 'fs';
+
+
 
 // // reading
-// fs.open('myfile', 'r', (err, fd) => {
-//     if (err) {
-//       if (err.code === 'ENOENT') {
-//         console.error('myfile does not exist');
-//         return;
-//       }
+fs.open('myfile', 'r', (err, fd) => {
+    if (err) {
+      if (err.code === 'ENOENT') {
+        console.error('myfile does not exist');
+        return;
+      }
   
-//       throw err;
-//     }
+      throw err;
+    }
   
-//     readMyData(fd);
-//   });
+    readMyData(fd);
+  });
 
 // // Writing
 // fs.open('message.txt', 'a', (err, fd) => {
