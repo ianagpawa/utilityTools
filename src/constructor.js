@@ -1,10 +1,7 @@
 const { CsvReader } = require('./reader.js');
 
 const csvReader = new CsvReader()
-csvReader.setFileName('somethingFile');
-console.log(csvReader.getFileName())
-
-csvReader.setFieldsToCheck('sosdfsdfmethingFile');
-console.log(csvReader.getFieldsToCheck())
+const fileName = '../resources/references/parentCsv.csv'
+csvReader.execute(fileName, null)
 // csvReader.readFile('../resources/references/parentCsv.csv');
 
