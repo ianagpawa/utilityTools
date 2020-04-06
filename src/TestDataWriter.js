@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { getRowArr, appendFile, dataFormatter} = require('./helperUtilities.js')
 
-class TestWriter {
+class TestDataWriter {
 
     constructor() {}
 
@@ -17,5 +17,5 @@ class TestWriter {
     execute(filename, outputFilename, positionArr) { this.processFieldsToCheck(filename, outputFilename, positionArr) }
 }
 
-module.exports = { TestWriter: TestWriter };
+module.exports = { TestDataWriter: TestDataWriter };
 

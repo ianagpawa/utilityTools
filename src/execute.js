@@ -1,14 +1,13 @@
-const { CsvReader } = require('./reader.js');
-const { TestWriter } = require('./testWriter.js');
+const { CsvParser } = require('./CsvParser.js');
+const { TestDataWriter } = require('./TestDataWriter.js');
 
-const csvReader = new CsvReader()
+const csvParser = new CsvParser()
 const fileName = '../resources/references/parentCsv.csv';
 const fieldsToCheck = '../resources/references/fields.csv';
 const outputFilename = '../resources/output/parserOutput.csv';
-// csvReader.execute(fileName, fieldsToCheck, outputFilename)
+// csvParser.execute(fileName, fieldsToCheck, outputFilename);
 
-
-const testWriter = new TestWriter();
+const testWriter = new TestDataWriter();
 const testOutputFilename = '../resources/output/parserTestOutput.csv';
 const positionArr = [0,1,2,5, 6];
 testWriter.execute(outputFilename, testOutputFilename, positionArr);

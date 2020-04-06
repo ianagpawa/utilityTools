@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { getRowArr, getEntryId, dataFormatter, appendFile } = require('./helperUtilities.js')
 
-class CsvReader {
+class CsvParser {
 
     constructor() {}
 
@@ -23,8 +23,8 @@ class CsvReader {
         return rowValues.join(',');
     }
 
-    execute(fileName, fieldsToCheckFileName, outputFilename) { this.processFieldsToCheck(fileName,fieldsToCheckFileName, outputFilename); }
+    execute(fileName, fieldsToCheckFileName, outputFilename) { this.processFieldsToCheck(fileName,fieldsToCheckFileName, outputFilename) }
 }
 
-module.exports = { CsvReader: CsvReader };
+module.exports = { CsvParser };
 
