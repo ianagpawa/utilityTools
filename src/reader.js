@@ -64,12 +64,22 @@ class CsvReader {
         arr.forEach(row => {
             if (this.getFieldsToCheck().indexOf(getEntryId(row)) !== -1) {
                 
-                fs.appendFile('./output.csv', `${row}\n`, function (err) {
+                fs.appendFile('./output.csv', `${this.transformRow(row)}\n`, function (err) {
                     if (err) throw err;
                     console.log('Updated!');
                 });
             }
         })
+    }
+
+    transformRow(row) {
+        let rowValues = getRowArr(row);
+        rowValues[1] = `old${rowValues[1][0].toUpperCase()}${rowValues[1].slice(1)}`;
+        rowValues[2] = `Old ${rowValues[2]}`;
+        if (rowValues[5]) {
+            rowValues[5] = `$.originalPosition.${rowValues[5]}`;
+        }
+        return rowValues.join(',');
     }
 
     execute(fileName, fieldsToCheckFileName) {
