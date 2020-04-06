@@ -1,37 +1,20 @@
 const fs = require('fs');
-const { getRowArr, getEntryId } = require('./helperUtilities.js')
+const { getRowArr, appendFile, dataFormatter} = require('./helperUtilities.js')
 
 class TestWriter {
 
     constructor() {}
 
-    processFieldsToCheck(fileName) { 
-        fs.readFile(fileName, 'utf8', (err, data) => {
-            this.processDataArr(data.split(/\r?\n/));
-        })
+    processFieldsToCheck(filename, outputFilename, positionArr) {  fs.readFile(filename, 'utf8', (err, data) => { this.processDataArr(outputFilename, positionArr, dataFormatter(data)); }) }
+
+    processDataArr(outputFilename, positionArr, arr) {
+        arr.forEach(row => { appendFile(outputFilename, `${this.transformRow(row, positionArr)}\n`); });
+        appendFile(outputFilename, arr.length -1);
     }
 
-    processDataArr(arr) {
-        arr.forEach(row => {
-            const positionArr = [0,1,2,5, 6];
-            const transformedRow = `${this.transformRow(row, positionArr)}\n`
-            fs.appendFile('./testOutput.csv', transformedRow, err => {
-                if (err) throw err;
-                console.log(`Update file with ${transformedRow}`);
-            })
+    transformRow(row, positionArr) { return positionArr.map(index => getRowArr(row)[index] ? getRowArr(row)[index] : ''); }
 
-        })
-    }
-
-    transformRow(row, positionArr) {
-        return positionArr.map(index => getRowArr(row)[index] ? getRowArr(row)[index] : '');
-    }
-
-    execute(fileName) {
-        this.processFieldsToCheck(fileName)
-    }
-
-
+    execute(filename, outputFilename, positionArr) { this.processFieldsToCheck(filename, outputFilename, positionArr) }
 }
 
 module.exports = { TestWriter: TestWriter };
