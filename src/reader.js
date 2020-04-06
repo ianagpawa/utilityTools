@@ -63,7 +63,6 @@ class CsvReader {
         let output = []
         arr.forEach(row => {
             if (this.getFieldsToCheck().indexOf(getEntryId(row)) !== -1) {
-                
                 fs.appendFile('./output.csv', `${this.transformRow(row)}\n`, function (err) {
                     if (err) throw err;
                     console.log('Updated!');
